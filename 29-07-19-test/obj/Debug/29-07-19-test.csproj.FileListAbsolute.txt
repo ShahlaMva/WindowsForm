@@ -1,0 +1,16 @@
+C:\Users\Admin\Desktop\works\backend\29-07-19-test\29-07-19-test\bin\Debug\29-07-19-test.exe
+C:\Users\Admin\Desktop\works\backend\29-07-19-test\29-07-19-test\bin\Debug\29-07-19-test.pdb
+C:\Users\Admin\Desktop\works\backend\29-07-19-test\29-07-19-test\obj\Debug\29-07-19-test.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\works\backend\29-07-19-test\29-07-19-test\obj\Debug\_29_07_19_test.Form1.resources
+C:\Users\Admin\Desktop\works\backend\29-07-19-test\29-07-19-test\obj\Debug\_29_07_19_test.Properties.Resources.resources
+C:\Users\Admin\Desktop\works\backend\29-07-19-test\29-07-19-test\obj\Debug\_29_07_19_test.Register.resources
+C:\Users\Admin\Desktop\works\backend\29-07-19-test\29-07-19-test\obj\Debug\29-07-19-test.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\works\backend\29-07-19-test\29-07-19-test\obj\Debug\29-07-19-test.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\works\backend\29-07-19-test\29-07-19-test\obj\Debug\29-07-19-test.exe
+C:\Users\Admin\Desktop\works\backend\29-07-19-test\29-07-19-test\obj\Debug\29-07-19-test.pdb
+C:\Users\Admin\Desktop\works\backend\29-07-19-test\29-07-19-test\bin\Debug\29-07-19-test.exe.config
+C:\Users\Admin\Desktop\works\backend\29-07-19-test\29-07-19-test\bin\Debug\EntityFramework.dll
+C:\Users\Admin\Desktop\works\backend\29-07-19-test\29-07-19-test\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Admin\Desktop\works\backend\29-07-19-test\29-07-19-test\bin\Debug\EntityFramework.xml
+C:\Users\Admin\Desktop\works\backend\29-07-19-test\29-07-19-test\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Admin\Desktop\works\backend\29-07-19-test\29-07-19-test\obj\Debug\29-07-19-test.csproj.CopyComplete

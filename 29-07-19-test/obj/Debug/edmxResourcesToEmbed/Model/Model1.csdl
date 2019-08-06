@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="masterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Levels" Type="Boolean" Nullable="false" />
+    <Property Name="Staus" Type="Boolean" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Lending" Relationship="masterModel.FK__Lending__UsersId__74AE54BC" FromRole="Users" ToRole="Lending" />
+  </EntityType>
+  <EntityContainer Name="masterEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="BookGenre" EntityType="masterModel.BookGenre" />
+    <EntitySet Name="Books" EntityType="masterModel.Books" />
+    <AssociationSet Name="FK__Books__GenreId__34C8D9D1" Association="masterModel.FK__Books__GenreId__34C8D9D1">
+      <End Role="BookGenre" EntitySet="BookGenre" />
+      <End Role="Books" EntitySet="Books" />
+    </AssociationSet>
+    <EntitySet Name="Lending" EntityType="masterModel.Lending" />
+    <AssociationSet Name="FK__Lending__BooksId__72C60C4A" Association="masterModel.FK__Lending__BooksId__72C60C4A">
+      <End Role="Books" EntitySet="Books" />
+      <End Role="Lending" EntitySet="Lending" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Lending__UsersId__74AE54BC" Association="masterModel.FK__Lending__UsersId__74AE54BC">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Lending" EntitySet="Lending" />
+    </AssociationSet>
+    <EntitySet Name="Members" EntityType="masterModel.Members" />
+    <AssociationSet Name="FK__Lending__Members__73BA3083" Association="masterModel.FK__Lending__Members__73BA3083">
+      <End Role="Members" EntitySet="Members" />
+      <End Role="Lending" EntitySet="Lending" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BookGenre">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GenreName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Books" Relationship="masterModel.FK__Books__GenreId__34C8D9D1" FromRole="BookGenre" ToRole="Books" />
+  </EntityType>
+  <EntityType Name="Books">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BookName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="BookCount" Type="Int32" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="GenreId" Type="Int32" />
+    <NavigationProperty Name="BookGenre" Relationship="masterModel.FK__Books__GenreId__34C8D9D1" FromRole="Books" ToRole="BookGenre" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Lending" Relationship="masterModel.FK__Lending__BooksId__72C60C4A" FromRole="Books" ToRole="Lending" />
+  </EntityType>
+  <Association Name="FK__Books__GenreId__34C8D9D1">
+    <End Type="masterModel.BookGenre" Role="BookGenre" Multiplicity="0..1" />
+    <End Type="masterModel.Books" Role="Books" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookGenre">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Books">
+        <PropertyRef Name="GenreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Lending">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BooksId" Type="Int32" />
+    <Property Name="MembersId" Type="Int32" />
+    <Property Name="DataTimeBorrowed" Type="DateTime" Precision="0" />
+    <Property Name="UsersId" Type="Int32" />
+    <Property Name="LentedUsername" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ReturnedUsername" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FinedAmount" Type="Decimal" Precision="5" Scale="2" />
+    <NavigationProperty Name="Books" Relationship="masterModel.FK__Lending__BooksId__72C60C4A" FromRole="Lending" ToRole="Books" />
+    <NavigationProperty Name="Users" Relationship="masterModel.FK__Lending__UsersId__74AE54BC" FromRole="Lending" ToRole="Users" />
+    <NavigationProperty Name="Members" Relationship="masterModel.FK__Lending__Members__73BA3083" FromRole="Lending" ToRole="Members" />
+    <Property Name="DataTimeReturned" Type="DateTime" Precision="0" />
+  </EntityType>
+  <Association Name="FK__Lending__BooksId__72C60C4A">
+    <End Type="masterModel.Books" Role="Books" Multiplicity="0..1" />
+    <End Type="masterModel.Lending" Role="Lending" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Books">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lending">
+        <PropertyRef Name="BooksId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Lending__UsersId__74AE54BC">
+    <End Type="masterModel.Users" Role="Users" Multiplicity="0..1" />
+    <End Type="masterModel.Lending" Role="Lending" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lending">
+        <PropertyRef Name="UsersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Members">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MemberSurname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PassportId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Deleted" Type="Boolean" />
+    <NavigationProperty Name="Lending" Relationship="masterModel.FK__Lending__Members__73BA3083" FromRole="Members" ToRole="Lending" />
+  </EntityType>
+  <Association Name="FK__Lending__Members__73BA3083">
+    <End Type="masterModel.Members" Role="Members" Multiplicity="0..1" />
+    <End Type="masterModel.Lending" Role="Lending" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Members">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lending">
+        <PropertyRef Name="MembersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

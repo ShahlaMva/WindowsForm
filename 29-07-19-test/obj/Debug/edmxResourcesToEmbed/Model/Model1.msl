@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="masterEntities">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="masterModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Levels" ColumnName="Levels" />
+          <ScalarProperty Name="Staus" ColumnName="Staus" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookGenre">
+      <EntityTypeMapping TypeName="masterModel.BookGenre">
+        <MappingFragment StoreEntitySet="BookGenre">
+          <ScalarProperty Name="GenreName" ColumnName="GenreName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Books">
+      <EntityTypeMapping TypeName="masterModel.Books">
+        <MappingFragment StoreEntitySet="Books">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="GenreId" ColumnName="GenreId" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="BookCount" ColumnName="BookCount" />
+          <ScalarProperty Name="BookName" ColumnName="BookName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lending">
+      <EntityTypeMapping TypeName="masterModel.Lending">
+        <MappingFragment StoreEntitySet="Lending">
+          <ScalarProperty Name="DataTimeReturned" ColumnName="DataTimeReturned" />
+          <ScalarProperty Name="FinedAmount" ColumnName="FinedAmount" />
+          <ScalarProperty Name="ReturnedUsername" ColumnName="ReturnedUsername" />
+          <ScalarProperty Name="LentedUsername" ColumnName="LentedUsername" />
+          <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+          <ScalarProperty Name="DataTimeBorrowed" ColumnName="DataTimeBorrowed" />
+          <ScalarProperty Name="MembersId" ColumnName="MembersId" />
+          <ScalarProperty Name="BooksId" ColumnName="BooksId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="masterModel.Members">
+        <MappingFragment StoreEntitySet="Members">
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="PassportId" ColumnName="PassportId" />
+          <ScalarProperty Name="MemberSurname" ColumnName="MemberSurname" />
+          <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

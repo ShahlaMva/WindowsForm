@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BookGenre">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GenreName" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Books">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BookName" Type="nvarchar" MaxLength="200" />
+    <Property Name="BookCount" Type="int" />
+    <Property Name="Price" Type="float" />
+    <Property Name="GenreId" Type="int" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Lending">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BooksId" Type="int" />
+    <Property Name="MembersId" Type="int" />
+    <Property Name="DataTimeBorrowed" Type="date" />
+    <Property Name="UsersId" Type="int" />
+    <Property Name="LentedUsername" Type="nvarchar" MaxLength="200" />
+    <Property Name="ReturnedUsername" Type="nvarchar" MaxLength="200" />
+    <Property Name="FinedAmount" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="DataTimeReturned" Type="date" />
+  </EntityType>
+  <EntityType Name="Members">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemberName" Type="nvarchar" MaxLength="100" />
+    <Property Name="MemberSurname" Type="nvarchar" MaxLength="100" />
+    <Property Name="PassportId" Type="nvarchar" MaxLength="100" />
+    <Property Name="Deleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Levels" Type="bit" Nullable="false" />
+    <Property Name="Staus" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Books__GenreId__34C8D9D1">
+    <End Role="BookGenre" Type="Self.BookGenre" Multiplicity="0..1" />
+    <End Role="Books" Type="Self.Books" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookGenre">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Books">
+        <PropertyRef Name="GenreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Lending__BooksId__72C60C4A">
+    <End Role="Books" Type="Self.Books" Multiplicity="0..1" />
+    <End Role="Lending" Type="Self.Lending" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Books">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lending">
+        <PropertyRef Name="BooksId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Lending__Members__73BA3083">
+    <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
+    <End Role="Lending" Type="Self.Lending" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Members">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lending">
+        <PropertyRef Name="MembersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Lending__UsersId__74AE54BC">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Lending" Type="Self.Lending" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lending">
+        <PropertyRef Name="UsersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="masterModelStoreContainer">
+    <EntitySet Name="BookGenre" EntityType="Self.BookGenre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lending" EntityType="Self.Lending" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Books__GenreId__34C8D9D1" Association="Self.FK__Books__GenreId__34C8D9D1">
+      <End Role="BookGenre" EntitySet="BookGenre" />
+      <End Role="Books" EntitySet="Books" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Lending__BooksId__72C60C4A" Association="Self.FK__Lending__BooksId__72C60C4A">
+      <End Role="Books" EntitySet="Books" />
+      <End Role="Lending" EntitySet="Lending" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Lending__Members__73BA3083" Association="Self.FK__Lending__Members__73BA3083">
+      <End Role="Members" EntitySet="Members" />
+      <End Role="Lending" EntitySet="Lending" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Lending__UsersId__74AE54BC" Association="Self.FK__Lending__UsersId__74AE54BC">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Lending" EntitySet="Lending" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
